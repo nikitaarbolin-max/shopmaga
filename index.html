@@ -1,10 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Test</title>
+<meta charset="UTF-8">
+<title>Магазин одежды</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+h1 { text-align: center; }
+.products { display: flex; flex-wrap: wrap; justify-content: center; }
+.product {
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    width: 180px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+.product img { width: 150px; height: 150px; object-fit: cover; }
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+button:hover { background-color: #45a049; }
+#cart-container { margin-top: 30px; }
+#cart { list-style: none; padding-left: 0; }
+.cart-item { margin-bottom: 5px; }
+.info { margin-top: 30px; background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); }
+</style>
 </head>
 <body>
-  <h1>Работает!</h1>
+
+<h1>Наш магазин одежды</h1>
+
+<div class="products">
+    <!-- Товары -->
+    <div class="product">
+        <img src="https://via.placeholder.com/150" alt="Футболка REBEL">
+        <h3>Футболка REBEL</h3>
+        <p>Цена: 2590 ₽</p>
+        <button onclick="addToCart('Футболка REBEL', 1500)">В корзину</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/150" alt="Кроссовки Puma">
+        <h3>Кроссовки Puma</h3>
+        <p>Цена: 5555 ₽</p>
+        <button onclick="addToCart('Кроссовки Puma', 5500)">В корзину</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/150" alt="Куртка Foot Work">
+        <h3>Куртка Foot Work</h3>
+        <p>Цена: 7009 ₽</p>
+        <button onclick="addToCart('Куртка Foot Work', 7000)">В корзину</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/150" alt="Футболка Traffa">
+        <h3>Футболка Traffa</h3>
+        <p>Цена: 2030 ₽</p>
+        <button onclick="addToCart('Футболка Traffa', 2000)">В корзину</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/150" alt="Кепка New Era">
+        <h3>Кепка New Era</h3>
+        <p>Цена: 1800 ₽</p>
+        <button onclick="addToCart('Кепка New Era', 1800)">В корзину</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/150" alt="Свитшот Сделано в Череповце">
+        <h3>Свитшот “Сделано в Череповце”</h3>
+        <p>Цена: 2500 ₽</p>
+        <button onclick="addToCart('Свитшот “Сделано в Череповце”', 2500)">В корзину</button>
+    </div>
+</div>
+
+<div id="cart-container">
+    <h2>Корзина</h2>
+    <ul id="cart"></ul>
+</div>
+
+<div class="info">
+    <h3>О магазине</h3>
+    <p>В нашем магазине 2 основных направления:</p>
+    <ul>
+        <li>Лучшие российские и зарубежные бренды: REBEL, Меч РОДИНА, Foot Work, Молодость, VIGRID, UNAFFECTED, New Era, defend, Traffa, Puma и др.</li>
+        <li>Наш собственный бренд с уникальной идентичностью и дизайном: “Сделано в Череповце”.</li>
+    </ul>
+    <p>📍 Адрес нашего магазина: Череповец, Московский проспект, 51, Интерсити, 4 этаж.</p>
+</div>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    renderCart();
+}
+
+function renderCart() {
+    const cartList = document.getElementById('cart');
+    cartList.innerHTML = '';
+    cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.className = 'cart-item';
+        li.textContent = `${item.name} — ${item.price} ₽`;
+        cartList.appendChild(li);
+    });
+}
+</script>
+
 </body>
 </html>
